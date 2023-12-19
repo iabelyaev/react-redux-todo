@@ -1,9 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import TodoItem from '../TodoItem';
 
 import s from './Main.module.scss';
-import { useSelector } from 'react-redux';
 
 const Main = () => {
   const todos = useSelector((state) => state.todos);

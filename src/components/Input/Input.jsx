@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import s from './Input.module.scss';
 import { addTodo } from 'reducer/todos';
+
+import s from './Input.module.scss';
 
 const Input = () => {
   const dispatch = useDispatch();
