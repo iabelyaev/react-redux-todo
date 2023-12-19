@@ -9,8 +9,9 @@ import Link from '../Link';
 const Footer = () => {
   const todos = useSelector((state) => state.todos);
   const count = todos.reduce((acc, it) => {
-    return !it.completed ? acc : acc + 1;
+    return it.completed ? acc : acc + 1;
   }, 0);
+
   return (
     <>
       {todos.length > 0 ? (
