@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import TodoItem from '../TodoItem';
 
 import s from './Main.module.scss';
+import Footer from '../Footer/Footer';
 
 const Main = () => {
   const todos = useSelector((state) => state.todos);
@@ -14,6 +15,7 @@ const Main = () => {
           <TodoItem key={todo.id} task={todo} {...todo} />
         ))}
       </ul>
+      <Footer />
     </section>
   );
 };

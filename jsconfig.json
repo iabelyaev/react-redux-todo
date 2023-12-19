@@ -4,7 +4,8 @@
     "paths": {
       "#/*": ["src/*"],
       "styles/*": ["styles/*"],
-      "reducer/*": ["reducer/*"]
+      "reducer/*": ["reducer/*"],
+      "constants/*": ["constants/*"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "build"]
