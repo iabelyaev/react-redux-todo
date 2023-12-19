@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { bool, string, func } from 'prop-types';
 
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from 'constants/index';
 
@@ -21,6 +22,13 @@ const Link = ({ filter, onClick, isActive, id, className }) => {
       {FILTERS_TITLE[filter]}
     </a>
   );
+};
+
+Link.propTypes = {
+  filter: string,
+  onClick: func,
+  isActive: bool,
+  className: string,
 };
 
 export default Link;
