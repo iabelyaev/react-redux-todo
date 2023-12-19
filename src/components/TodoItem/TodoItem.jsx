@@ -4,7 +4,7 @@ import { string, shape, number, bool } from 'prop-types';
 import cx from 'classnames';
 
 import s from './TodoItem.module.scss';
-import { toggleTodo } from 'reducer/todos';
+import { deleteTodo, toggleTodo } from 'reducer/todos';
 
 const TodoItem = ({ task, text }) => {
   const dispatch = useDispatch();
@@ -13,6 +13,10 @@ const TodoItem = ({ task, text }) => {
   const handleToggleTodo = (id) => {
     dispatch(toggleTodo(id));
     setIsCheck(!isCheck);
+  };
+
+  const handleDeleteTodo = (id) => {
+    dispatch(deleteTodo(id));
   };
 
   return (
@@ -27,7 +31,11 @@ const TodoItem = ({ task, text }) => {
         <span></span>
       </label>
       <span className={s.text}>{text}</span>
-      <button className={s.button} type="button" />
+      <button
+        className={s.button}
+        type="button"
+        onClick={() => handleDeleteTodo(task.id)}
+      />
     </li>
   );
 };

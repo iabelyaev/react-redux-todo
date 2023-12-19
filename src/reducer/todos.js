@@ -25,9 +25,12 @@ const todos = createSlice({
         };
       });
     },
+    deleteTodo(state, action) {
+      return state.filter((todo) => todo.id !== action.payload);
+    },
   },
 });
 
-export const { addTodo, toggleTodo } = todos.actions;
+export const { addTodo, toggleTodo, deleteTodo } = todos.actions;
 
 export default todos.reducer;
