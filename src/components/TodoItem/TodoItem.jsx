@@ -30,7 +30,7 @@ const TodoItem = ({ task, text }) => {
         />
         <span></span>
       </label>
-      <span className={s.text}>{text}</span>
+      <span className={cx(s.text, { [s.textCheck]: isCheck })}>{text}</span>
       <button
         className={s.button}
         type="button"
