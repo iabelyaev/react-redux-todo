@@ -13,9 +13,21 @@ const todos = createSlice({
         completed: false,
       });
     },
+    toggleTodo(state, action) {
+      return state.map((todo) => {
+        if (todo.id !== action.payload) {
+          return todo;
+        }
+
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      });
+    },
   },
 });
 
-export const { addTodo } = todos.actions;
+export const { addTodo, toggleTodo } = todos.actions;
 
 export default todos.reducer;
