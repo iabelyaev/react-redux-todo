@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TodoItem from '../TodoItem';
+
 import s from './Main.module.scss';
 import { useSelector } from 'react-redux';
 
@@ -9,9 +11,7 @@ const Main = () => {
     <section className={s.todoApp}>
       <ul className={s.list}>
         {todos.map((todo) => (
-          <li key={todo.id} data-id={todo.id}>
-            <p>{todo.text}</p>
-          </li>
+          <TodoItem key={todo.id} task={todo} {...todo} />
         ))}
       </ul>
     </section>

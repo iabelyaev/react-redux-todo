@@ -1,0 +1,113 @@
+.item {
+  position: relative;
+  width: 100%;
+  background-color: white;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(192,192,192,.6);
+  }
+}
+
+.button {
+  position: absolute;
+  z-index: 12;
+  right: 2rem;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  border: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .4s ease;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2rem;
+    height: 2px;
+    background-color: black;
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    &::after,
+    &::before {
+      background-color: red;
+    }
+  }
+}
+
+.item:hover .button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.input + span {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  z-index: 11;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #444;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &:hover {
+    border-color: lab(39.302 45.71 -34.43);
+  }
+}
+
+.input:checked + span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: lab(39.302 45.71 -34.43);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 20px 20px 20px 60px;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #444444;
+  word-break: break-all;
+}
+
+.textCheck {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+
+.inputEdit {
+  position: relative;
+  z-index: 99;
+  padding: 20px;
+  width: 100%;
+  outline: 0;
+}
