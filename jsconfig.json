@@ -3,7 +3,8 @@
     "baseUrl": "src",
     "paths": {
       "#/*": ["src/*"],
-      "styles/*": ["styles/*"]
+      "styles/*": ["styles/*"],
+      "reducer/*": ["reducer/*"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "build"]
