@@ -30,7 +30,7 @@ const Main = () => {
       <ToggleTodo />
       <ul className={s.list}>
         {visibleTodoList.map((todo) => (
-          <TodoItem key={todo.id} task={todo} {...todo} />
+          <TodoItem key={todo.id} todo={todo} {...todo} />
         ))}
       </ul>
       <Footer />

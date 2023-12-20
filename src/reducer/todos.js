@@ -48,6 +48,20 @@ const todos = createSlice({
         };
       });
     },
+    editTodo(state, action) {
+      const { todoId, todoValue } = action.payload;
+
+      return state.map((todo) => {
+        if (todo.id !== todoId) {
+          return todo;
+        }
+
+        return {
+          ...todo,
+          text: todoValue,
+        };
+      });
+    },
   },
 });
 
@@ -57,6 +71,7 @@ export const {
   deleteTodo,
   clearCompletedTodo,
   checkAllTodos,
+  editTodo,
 } = todos.actions;
 
 export default todos.reducer;

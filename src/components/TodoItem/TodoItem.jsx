@@ -4,12 +4,13 @@ import { string, shape, number, bool } from 'prop-types';
 import cx from 'classnames';
 
 import s from './TodoItem.module.scss';
-import { deleteTodo, toggleTodo } from 'reducer/todos';
+import { deleteTodo, editTodo, toggleTodo } from 'reducer/todos';
 
-const TodoItem = ({ task, text }) => {
+const TodoItem = ({ todo, text }) => {
   const dispatch = useDispatch();
   const [isCheck, setIsCheck] = useState(false);
-
+  const [title, setTitle] = useState('');
+  const [isEditTodo, setIsEditTodo] = useState(false);
   const handleToggleTodo = (id) => {
     dispatch(toggleTodo(id));
     setIsCheck(!isCheck);
@@ -19,26 +20,75 @@ const TodoItem = ({ task, text }) => {
     dispatch(deleteTodo(id));
   };
 
+  const handleEditTodo = () => {
+    if (!title) {
+      return;
+    }
+
+    dispatch(editTodo({ todoId: todo.id, todoValue: title }));
+  };
+
+  const handleDoubleClick = () => {
+    if (todo.completed) {
+      return;
+    }
+
+    setIsEditTodo(true);
+  };
+
+  const handleBlurEdit = () => {
+    handleEditTodo();
+    setIsEditTodo(false);
+  };
+
+  const handleEditTodoValue = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleEnterPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleEditTodo();
+      setIsEditTodo(false);
+    }
+  };
+
   useEffect(() => {
-    setIsCheck(task.completed);
-  }, [task]);
+    setIsCheck(todo.completed);
+  }, [todo]);
 
   return (
-    <li className={s.item} data-id={task.id}>
+    <li className={s.item} data-id={todo.id}>
       <label>
         <input
           className={cx('visually-hidden', s.input)}
           type="checkbox"
-          onChange={() => handleToggleTodo(task.id)}
+          onChange={() => handleToggleTodo(todo.id)}
           checked={isCheck}
         />
         <span></span>
       </label>
-      <span className={cx(s.text, { [s.textCheck]: isCheck })}>{text}</span>
+      {isEditTodo ? (
+        <input
+          className={s.inputEdit}
+          type="text"
+          onChange={handleEditTodoValue}
+          onBlur={handleBlurEdit}
+          onKeyDown={handleEnterPress}
+          value={title}
+          autoFocus
+        />
+      ) : (
+        <span
+          className={cx(s.text, { [s.textCheck]: isCheck })}
+          onDoubleClick={handleDoubleClick}>
+          {text}
+        </span>
+      )}
       <button
         className={s.button}
         type="button"
-        onClick={() => handleDeleteTodo(task.id)}
+        onClick={() => handleDeleteTodo(todo.id)}
       />
     </li>
   );
@@ -46,7 +96,7 @@ const TodoItem = ({ task, text }) => {
 
 TodoItem.propTypes = {
   text: string,
-  task: shape({
+  todo: shape({
     id: number,
     text: string,
     completed: bool,
