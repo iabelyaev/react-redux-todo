@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { string, shape, number, bool } from 'prop-types';
 import cx from 'classnames';
@@ -18,6 +18,10 @@ const TodoItem = ({ task, text }) => {
   const handleDeleteTodo = (id) => {
     dispatch(deleteTodo(id));
   };
+
+  useEffect(() => {
+    setIsCheck(task.completed);
+  }, [task]);
 
   return (
     <li className={s.item} data-id={task.id}>

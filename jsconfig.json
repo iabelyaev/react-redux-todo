@@ -5,7 +5,8 @@
       "#/*": ["src/*"],
       "styles/*": ["styles/*"],
       "reducer/*": ["reducer/*"],
-      "constants/*": ["constants/*"]
+      "constants/*": ["constants/*"],
+      "selectors/*": ["selectors/*"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "build"]
