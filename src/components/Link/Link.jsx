@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { bool, string, func, any } from 'prop-types';
+import { string, func, any } from 'prop-types';
 
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from 'constants/index';
 

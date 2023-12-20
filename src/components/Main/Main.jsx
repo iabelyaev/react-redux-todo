@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 
 import s from './Main.module.scss';
 import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from 'constants/index';
+import ToggleTodo from '../ToggleTodo';
 
 const getVisibleTodos = (todosArr, filter) => {
   switch (filter) {
@@ -26,6 +27,7 @@ const Main = () => {
 
   return (
     <section className={s.todoApp}>
+      <ToggleTodo />
       <ul className={s.list}>
         {visibleTodoList.map((todo) => (
           <TodoItem key={todo.id} task={todo} {...todo} />
