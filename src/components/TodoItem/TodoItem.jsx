@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { string, shape, number, bool } from 'prop-types';
 import cx from 'classnames';
 
-import s from './TodoItem.module.scss';
 import { deleteTodo, editTodo, toggleTodo } from 'reducer/todos';
+
+import s from './TodoItem.module.scss';
 
 const TodoItem = ({ todo, text }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const TodoItem = ({ todo, text }) => {
   };
 
   const handleEditTodo = () => {
-    if (!title) {
+    if (title.trim() === '') {
       return;
     }
 

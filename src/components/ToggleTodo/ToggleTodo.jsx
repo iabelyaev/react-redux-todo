@@ -21,14 +21,18 @@ const ToggleTodo = () => {
 
   return (
     <>
-      <input
-        type="checkbox"
-        className={s.input}
-        onChange={handleToggleAll}
-        checked={hasEventEvery}
-        id="toggleAll"
-      />
-      <label htmlFor="toggleAll" />
+      {todos.length > 0 && (
+        <>
+          <input
+            type="checkbox"
+            className={s.input}
+            onChange={handleToggleAll}
+            checked={hasEventEvery}
+            id="toggleAll"
+          />
+          <label htmlFor="toggleAll" />
+        </>
+      )}
     </>
   );
 };

@@ -19,6 +19,15 @@ const Input = () => {
     }
   };
 
+  const handleAddTodoBlur = () => {
+    if (text.trim() === '') {
+      return;
+    }
+
+    dispatch(addTodo(text));
+    setText('');
+  };
+
   const handleChangeInputValue = (e) => {
     setText(e.target.value);
   };
@@ -30,6 +39,7 @@ const Input = () => {
         type="text"
         value={text}
         onChange={handleChangeInputValue}
+        onBlur={handleAddTodoBlur}
         onKeyDown={handleAddTodo}
         placeholder="What needs to be done?"
       />

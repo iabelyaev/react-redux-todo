@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'constants/index';
 import { setFilter } from 'reducer/filters';
+import { clearCompletedTodo } from 'reducer/todos';
+
+import Link from 'components/Link';
 
 import s from './Footer.module.scss';
-import Link from '../Link';
-import { clearCompletedTodo } from 'reducer/todos';
 
 const Footer = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,9 @@ const Footer = () => {
   const filters = useSelector((state) => state.filters.filter);
   const [isActive, setIsActive] = useState(filters);
   const hasTodoCompleted = todos.some((todo) => todo.completed >= 1);
+
   const count = todos.reduce((acc, it) => {
-    return it.completed ? acc : acc + 1;
+    return !it.completed ? acc + 1 : acc;
   }, 0);
 
   const handleChangeFilter = (e) => {
@@ -40,8 +42,8 @@ const Footer = () => {
               <li key={filter}>
                 <Link
                   filter={filter}
-                  id={filter}
                   onClick={handleChangeFilter}
+                  id={filter}
                   isActive={isActive}
                 />
               </li>
