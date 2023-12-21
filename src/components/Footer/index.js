@@ -1,1 +1,1 @@
-export { default } from './Footer.module.scss';
+export { default } from './Footer';
