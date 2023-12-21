@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from 'constants/index';
 
-import TodoItem from '../TodoItem';
+import TodoItem from 'components/TodoItem';
 import Footer from 'components/Footer';
 import ToggleTodo from 'components/ToggleTodo';
 
@@ -31,7 +31,7 @@ const Main = () => {
 
       <ul className={s.list}>
         {visibleTodoList.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} {...todo} />
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </ul>
 

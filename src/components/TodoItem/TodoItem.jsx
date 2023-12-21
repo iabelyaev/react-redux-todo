@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { string, shape, number, bool } from 'prop-types';
+import { string, number, bool } from 'prop-types';
 import cx from 'classnames';
 
 import { deleteTodo, editTodo, toggleTodo } from 'reducer/todos';
 
 import s from './TodoItem.module.scss';
 
-const TodoItem = ({ todo, text }) => {
+const TodoItem = ({ id, completed, text }) => {
   const dispatch = useDispatch();
   const [isCheck, setIsCheck] = useState(false);
   const [title, setTitle] = useState('');
   const [isEditTodo, setIsEditTodo] = useState(false);
-  const handleToggleTodo = (id) => {
+
+  const handleToggleTodo = () => {
     dispatch(toggleTodo(id));
     setIsCheck(!isCheck);
   };
 
-  const handleDeleteTodo = (id) => {
+  const handleDeleteTodo = () => {
     dispatch(deleteTodo(id));
   };
 
   const handleEditTodo = () => {
     if (title.trim() === '') {
-      return;
+      handleDeleteTodo(id);
     }
 
-    dispatch(editTodo({ todoId: todo.id, todoValue: title }));
+    dispatch(editTodo({ todoId: id, todoValue: title }));
   };
 
   const handleDoubleClick = () => {
-    if (todo.completed) {
-      return;
-    }
-
     setIsEditTodo(true);
   };
 
@@ -55,16 +52,16 @@ const TodoItem = ({ todo, text }) => {
   };
 
   useEffect(() => {
-    setIsCheck(todo.completed);
-  }, [todo]);
+    setIsCheck(completed);
+  }, [completed]);
 
   return (
-    <li className={s.item} data-id={todo.id}>
+    <li className={s.item} data-id={id}>
       <label>
         <input
           className={cx('visually-hidden', s.input)}
           type="checkbox"
-          onChange={() => handleToggleTodo(todo.id)}
+          onChange={handleToggleTodo}
           checked={isCheck}
         />
         <span></span>
@@ -86,22 +83,15 @@ const TodoItem = ({ todo, text }) => {
           {text}
         </span>
       )}
-      <button
-        className={s.button}
-        type="button"
-        onClick={() => handleDeleteTodo(todo.id)}
-      />
+      <button className={s.button} type="button" onClick={handleDeleteTodo} />
     </li>
   );
 };
 
 TodoItem.propTypes = {
-  text: string,
-  todo: shape({
-    id: number,
-    text: string,
-    completed: bool,
-  }).isRequired,
+  text: string.isRequired,
+  completed: bool.isRequired,
+  id: number.isRequired,
 };
 
 export default TodoItem;
