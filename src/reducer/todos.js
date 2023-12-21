@@ -28,9 +28,35 @@ const todos = createSlice({
     deleteTodo(state, action) {
       return state.filter((todo) => todo.id !== action.payload);
     },
+    clearCompletedTodo(state) {
+      return state.filter((todo) => todo.completed !== true);
+    },
+    checkAllTodos(state) {
+      const hasTodoCompleted = state.every((todo) => todo.completed);
+
+      return state.map((todo) => {
+        if (hasTodoCompleted) {
+          return {
+            ...todo,
+            completed: false,
+          };
+        }
+
+        return {
+          ...todo,
+          completed: true,
+        };
+      });
+    },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo } = todos.actions;
+export const {
+  addTodo,
+  toggleTodo,
+  deleteTodo,
+  clearCompletedTodo,
+  checkAllTodos,
+} = todos.actions;
 
 export default todos.reducer;

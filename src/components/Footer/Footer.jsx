@@ -1,20 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'constants/index';
+import { setFilter } from 'reducer/filters';
 
 import s from './Footer.module.scss';
 import Link from '../Link';
+import { clearCompletedTodo } from 'reducer/todos';
 
 const Footer = () => {
+  const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
+  const filters = useSelector((state) => state.filters.filter);
+  const [isActive, setIsActive] = useState(filters);
+  const hasTodoCompleted = todos.some((todo) => todo.completed >= 1);
   const count = todos.reduce((acc, it) => {
     return it.completed ? acc : acc + 1;
   }, 0);
 
+  const handleChangeFilter = (e) => {
+    dispatch(setFilter(e.target.id));
+    setIsActive(e.target.id);
+  };
+
+  const handleClearCompleted = () => {
+    dispatch(clearCompletedTodo());
+  };
+
   return (
     <>
-      {todos.length > 0 ? (
+      {todos.length > 0 && (
         <footer className={s.footer}>
           <span className={s.count}>
             <strong>{count}</strong> {count === 1 ? 'item' : 'items'} left
@@ -23,16 +38,26 @@ const Footer = () => {
           <ul className={s.list}>
             {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map((filter) => (
               <li key={filter}>
-                <Link filter={filter} id={filter} />
+                <Link
+                  filter={filter}
+                  id={filter}
+                  onClick={handleChangeFilter}
+                  isActive={isActive}
+                />
               </li>
             ))}
           </ul>
 
-          <button className={s.button} type="button">
-            Clear Completed
-          </button>
+          {hasTodoCompleted && (
+            <button
+              className={s.button}
+              type="button"
+              onClick={handleClearCompleted}>
+              Clear Completed
+            </button>
+          )}
         </footer>
-      ) : null}
+      )}
     </>
   );
 };
