@@ -9,20 +9,20 @@ import ToggleTodo from 'components/ToggleTodo';
 
 import s from './Main.module.scss';
 
+const getVisibleTodos = (todosArr, filter) => {
+  switch (filter) {
+    case SHOW_ALL:
+      return todosArr;
+    case SHOW_ACTIVE:
+      return todosArr.filter((todo) => !todo.completed);
+    case SHOW_COMPLETED:
+      return todosArr.filter((todo) => todo.completed);
+  }
+};
+
 const Main = () => {
   const todos = useSelector((state) => state.todos);
   const filters = useSelector((state) => state.filters.filter);
-  const getVisibleTodos = (todosArr, filter) => {
-    switch (filter) {
-      case SHOW_ALL:
-        return todosArr;
-      case SHOW_ACTIVE:
-        return todosArr.filter((todo) => !todo.completed);
-      case SHOW_COMPLETED:
-        return todosArr.filter((todo) => todo.completed);
-    }
-  };
-
   const visibleTodoList = getVisibleTodos(todos, filters);
 
   return (
