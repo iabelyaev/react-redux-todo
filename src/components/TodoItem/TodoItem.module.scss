@@ -76,6 +76,10 @@
   }
 }
 
+.input:checked + span {
+  border-color: $purple;
+}
+
 .input:checked + span::before {
   content: "";
   position: absolute;
@@ -112,5 +116,8 @@
   z-index: 99;
   padding: 20px;
   width: 100%;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
   outline: 0;
 }
