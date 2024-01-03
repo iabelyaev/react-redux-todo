@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'constants/index';
 import { setFilter } from 'reducer/filters';
-import { clearCompletedTodo } from 'reducer/todos';
+import { clearCompleted } from 'reducer/todos';
 
 import Link from 'components/Link';
 
@@ -26,7 +26,7 @@ const Footer = () => {
   };
 
   const handleClearCompleted = () => {
-    dispatch(clearCompletedTodo());
+    dispatch(clearCompleted());
   };
 
   return (
