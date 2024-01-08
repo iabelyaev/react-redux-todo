@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { checkAllTodos } from 'reducer/todos';
+import { completedAll } from 'reducer/todos';
 
 import s from './ToggleTodo.module.scss';
 
@@ -11,7 +11,7 @@ const ToggleTodo = () => {
   const hasEventEvery = todos.every((task) => task.completed);
   const [isCheck, setIsCheck] = useState(false);
   const handleToggleAll = () => {
-    dispatch(checkAllTodos());
+    dispatch(completedAll());
     setIsCheck(!isCheck);
   };
 

@@ -28,10 +28,10 @@ const todos = createSlice({
     deleteTodo(state, action) {
       return state.filter((todo) => todo.id !== action.payload);
     },
-    clearCompletedTodo(state) {
+    clearCompleted(state) {
       return state.filter((todo) => todo.completed !== true);
     },
-    checkAllTodos(state) {
+    completedAll(state) {
       const hasTodoCompleted = state.every((todo) => todo.completed);
 
       return state.map((todo) => {
@@ -69,8 +69,8 @@ export const {
   addTodo,
   toggleTodo,
   deleteTodo,
-  clearCompletedTodo,
-  checkAllTodos,
+  clearCompleted,
+  completedAll,
   editTodo,
 } = todos.actions;
 
