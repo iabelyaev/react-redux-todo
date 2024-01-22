@@ -3,24 +3,24 @@
 .info {
   margin-top: 4rem;
   color: $gray;
-}
 
-.info p {
-  margin: 0;
-  font-size: 1.4rem;
-  text-align: center;
+  p {
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  a {
+    font-size: 1.4rem;
+    color: $gray-border;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
 }
 
 .edit {
   margin-bottom: 1rem;
-}
-
-.info a {
-  font-size: 1.4rem;
-  color: $gray-border;
-
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
 }
