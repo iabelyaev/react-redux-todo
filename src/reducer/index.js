@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todosReducer from './todos';
-import filtersReducer from 'reducer/filters';
-import { localStorageStore, preLoadState } from '../middlewares';
+import todosReducer from  './todos'
+import filtersReducer from './filters';
+import {localStorageStore, preLoadState} from 'middlewares/index';
 
 export const store = configureStore({
   reducer: {

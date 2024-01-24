@@ -8,7 +8,6 @@ const Header = () => {
   return (
     <header className={s.header}>
       <h1 className={s.title}>todos</h1>
-
       <Input />
     </header>
   );
