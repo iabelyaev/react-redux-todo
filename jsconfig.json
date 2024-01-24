@@ -6,7 +6,8 @@
       "reducer/*": ["reducer/*"],
       "constants/*": ["constants/*"],
       "selectors/*": ["selectors/*"],
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "middlewares/*": ["middlewares/*"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "build"]
